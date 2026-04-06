@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html, body, #root { @apply h-full; }
+  body {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    @apply bg-brand-bg text-brand-text antialiased overflow-hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+  * { @apply box-border; }
+  ::-webkit-scrollbar        { @apply w-[5px] h-[5px]; }
+  ::-webkit-scrollbar-track  { @apply bg-transparent; }
+  ::-webkit-scrollbar-thumb  { @apply bg-brand-border rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-brand-muted/40; }
+  select option { background: #fff; color: #07102A; }
+  .dark select option { background: #050E24; color: #DDE5FF; }
+}
+
+@layer components {
+
+  /* ── Sidebar ── */
+  .sidebar-glass {
+    background: linear-gradient(180deg, #ffffff 0%, #f2f5ff 100%);
+    box-shadow: 5px 0 28px rgba(7,16,42,0.08);
+  }
+  .dark .sidebar-glass {
+    background: linear-gradient(180deg, #050E24 0%, #010714 100%);
+    box-shadow: 5px 0 28px rgba(0,0,0,0.55);
+  }
+
+  /* ── Top header bar (desktop) ── */
+  .topbar {
+    @apply hidden lg:flex items-center justify-between
+           px-8 py-3.5 bg-white dark:bg-dark-card
+           border-b border-brand-border/50 dark:border-dark-border
+           shrink-0;
+    box-shadow: 0 1px 0 rgba(7,16,42,0.06);
+  }
+
+  /* ── Cards ── */
+  .card-base {
+    @apply bg-white dark:bg-dark-card rounded-2xl border border-brand-border/60 dark:border-dark-border shadow-card transition-all duration-200;
+  }
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:shadow-card-hover cursor-default;
+  }
+
+  /* ── Summary Cards ── */
+  .summary-card {
+    @apply relative overflow-hidden bg-white dark:bg-dark-card rounded-2xl
+           border border-brand-border/60 dark:border-dark-border
+           shadow-card transition-all duration-300
+           hover:-translate-y-1 hover:shadow-card-hover cursor-default;
+  }
+
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply bg-primary text-white font-semibold rounded-xl px-5 py-2.5 text-sm
+           hover:bg-primary-light active:bg-primary-dark
+           transition-all duration-150 hover:-translate-y-px active:translate-y-0
+           disabled:opacity-60 disabled:cursor-not-allowed disabled:transform-none;
+    box-shadow: 0 3px 14px rgba(18,48,196,0.38);
+  }
+  .btn-ghost {
+    @apply bg-brand-bg dark:bg-dark-alt text-brand-muted dark:text-dark-muted
+           font-medium rounded-xl px-4 py-2.5 text-sm border border-brand-border dark:border-dark-border
+           hover:text-brand-text dark:hover:text-dark-text hover:border-brand-muted/40
+           transition-all duration-150 hover:-translate-y-px active:translate-y-0;
+  }
+  .btn-danger {
+    @apply bg-red-50 dark:bg-red-900/20 text-red-600 dark:text-red-400 font-semibold rounded-xl px-4 py-2.5 text-sm
+           hover:bg-red-100 dark:hover:bg-red-900/40 transition-all duration-150 hover:-translate-y-px;
+  }
+  .btn-icon {
+    @apply p-2 rounded-xl bg-brand-bg dark:bg-dark-alt border border-brand-border dark:border-dark-border
+           text-brand-muted hover:text-brand-text dark:hover:text-dark-text
+           transition-all duration-150 cursor-pointer;
+  }
+
+  /* ── Theme toggle button ── */
+  .theme-btn {
+    @apply flex items-center gap-2 px-3 py-2 rounded-xl
+           border border-brand-border dark:border-dark-border
+           bg-brand-bg dark:bg-dark-alt
+           text-brand-muted dark:text-dark-muted
+           hover:border-primary/40 hover:text-primary dark:hover:text-primary
+           transition-all duration-200 cursor-pointer text-xs font-semibold;
+  }
+
+  /* ── Inputs ── */
+  .input-base {
+    @apply w-full px-3 py-2.5 rounded-xl border border-brand-border dark:border-dark-border
+           bg-white dark:bg-dark-alt text-brand-text dark:text-dark-text
+           text-sm outline-none placeholder-brand-muted/50 dark:placeholder-dark-muted/50
+           focus:border-primary/60 focus:ring-0 focus:shadow-glow
+           transition-all duration-150;
+  }
+
+  /* ── Badges ── */
+  .badge {
+    @apply inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold whitespace-nowrap;
+  }
+
+  /* ── Nav items ── */
+  .nav-item {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium
+           cursor-pointer transition-all duration-150;
+  }
+  .nav-item-active {
+    @apply bg-primary text-white font-semibold;
+    box-shadow: 0 4px 16px rgba(18,48,196,0.38);
+  }
+  .nav-item-inactive {
+    @apply text-brand-muted dark:text-dark-muted hover:bg-brand-bg dark:hover:bg-dark-alt hover:text-brand-text dark:hover:text-dark-text;
+  }
+
+  /* ── Table ── */
+  .th {
+    @apply px-4 py-3 text-left text-[10px] font-bold text-brand-muted dark:text-dark-muted uppercase tracking-[0.1em];
+    background: rgba(232,237,249,0.9);
+  }
+  .dark .th { background: rgba(9,21,48,0.9); }
+  .th-right { @apply text-right; }
+  .td {
+    @apply px-4 py-3.5 text-sm text-brand-text dark:text-dark-text border-t border-brand-border/50 dark:border-dark-border;
+  }
+  .tr-hover {
+    @apply hover:bg-primary/[0.025] dark:hover:bg-primary/[0.08] transition-colors duration-100;
+  }
+
+  /* ── Section label ── */
+  .section-label {
+    @apply text-[10px] font-bold uppercase tracking-[0.12em] text-brand-muted dark:text-dark-muted;
+  }
+
+  /* ── Progress bar ── */
+  .progress-bar {
+    @apply h-1.5 rounded-full overflow-hidden;
+    background: rgba(203,211,232,0.8);
+  }
+  .dark .progress-bar { background: rgba(15,30,60,0.9); }
+  .progress-fill { @apply h-full rounded-full; }
+
+  /* ── Modal backdrop ── */
+  .backdrop {
+    @apply fixed inset-0 backdrop-blur-sm z-[900] flex items-center justify-center p-4;
+    background: rgba(7,16,42,0.50);
+    animation: fadeIn 0.18s ease both;
+  }
+  .dark .backdrop { background: rgba(0,0,0,0.72); }
+
+  /* ── Stat chip ── */
+  .stat-chip {
+    @apply flex items-center gap-2 px-3 py-2 rounded-xl bg-white dark:bg-dark-card border border-brand-border/60 dark:border-dark-border;
+    box-shadow: 0 1px 4px rgba(7,16,42,0.06);
+  }
+}
+
+@layer utilities {
+  .text-balance { text-wrap: balance; }
+  .scrollbar-hide::-webkit-scrollbar { display: none; }
+  .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+}
+
+@keyframes fadeIn   { from { opacity: 0 } to { opacity: 1 } }
+@keyframes slideUp  { from { opacity: 0; transform: translateY(12px) } to { opacity: 1; transform: translateY(0) } }
+@keyframes spin     { to { transform: rotate(360deg) } }
+@keyframes pulse-glow { 0%,100% { opacity: 0.6 } 50% { opacity: 1 } }
+
+.animate-spin-slow  { animation: spin 1.4s linear infinite; }
+.animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
