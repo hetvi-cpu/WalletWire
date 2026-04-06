@@ -117,19 +117,19 @@ npm run dev
 
 ### 📊 Dashboard (Light Mode)
 
-![Dashboard Light](./screenshots/dashboard-light.png)
+![Dashboard Light](./Screenshots/dashboard-light.png)
 
 ### 🌙 Dashboard (Dark Mode)
 
-![Dashboard Dark](./screenshots/dashboard-dark.png)
+![Dashboard Dark](./Screenshots/dashboard-dark.png)
 
 ### 📄 Transactions
 
-![Transactions](./screenshots/transactions.png)
+![Transactions](./Screenshots/transcations.png)
 
 ### 📈 Insights
 
-![Insights](./screenshots/insights.png)
+![Insights](./Screenshots/insights.png)
 
 ---
 
